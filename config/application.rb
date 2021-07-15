@@ -37,6 +37,9 @@ module IdeabookBackend
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    Rails.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
+    config.colorize_logging = false
+
     config.autoload_paths << Rails.root.join('lib')
   end
 end

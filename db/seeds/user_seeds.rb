@@ -3,18 +3,25 @@
 class UsersSeeds
   def perform
     20.times do
-      user = User.new(
-        email: Faker::Internet.unique.email,
-        password: '11111111',
-        password_confirmation: '11111111',
-      )
+      user = generate_user
       logger.error user.errors.full_messages unless user.save
     end
-    user = User.new(
-      email: 'test@example.com',
-      password: '11111111',
-      password_confirmation: '11111111',
-    )
+    user = generate_user
+    user.email = 'test@example.com'
     logger.error user.errors.full_messages unless user.save
+  end
+
+  private
+
+  def generate_user
+    User.new(
+      email: Faker::Internet.unique.email,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      birth_date: Faker::Date.between(from: 40.years.ago, to: 18.days.ago),
+      avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
+      password: '11111111',
+      password_confirmation: '11111111'
+    )
   end
 end

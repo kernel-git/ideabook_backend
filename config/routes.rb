@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users,
-    path: '',
+    path: 'v1',
     controllers: {
-      sessions: 'users/sessions',
-      registrations: 'users/registrations'
+      sessions: 'auth/sessions',
+      registrations: 'auth/registrations'
     }
-  get '/home', to: 'home#show'
+  namespace :v1 do
+    resources :users, only: %i[index show update]
+  end
+  get '/v1/home', to: 'v1/home#show'
 end

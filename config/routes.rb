@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     }
   namespace :v1 do
     resources :users, only: %i[index show update]
+    resources :companies, only: %i[index show update]
   end
   get '/v1/home', to: 'v1/home#show'
 end

@@ -5,5 +5,6 @@ Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
 end
 
 UsersSeeds.new.perform
+CompaniesSeeds.new.perform
 
 puts 'Database populated with seeds'

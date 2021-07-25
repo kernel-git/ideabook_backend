@@ -4,9 +4,11 @@ class UsersSeeds
   def perform
     20.times do
       user = generate_user
+      user.company = Company.find(rand(1..5))
       logger.error user.errors.full_messages unless user.save
     end
     user = generate_user
+    user.company = Company.find(rand(1..5))
     user.email = 'test@example.com'
     logger.error user.errors.full_messages unless user.save
   end

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     resources :companies, only: %i[index show update]
   end
   get '/v1/home', to: 'v1/home#show'
+
+  match '*unmatched', to: 'application#not_found', via: :all
 end

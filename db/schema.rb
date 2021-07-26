@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2021_07_25_194844) do
     t.string "name"
     t.string "slogan"
     t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "jwt_denylist", force: :cascade do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FailureApp < Devise::FailureApp
   def respond
     json_unauthorized
@@ -8,6 +10,6 @@ class FailureApp < Devise::FailureApp
   def json_unauthorized
     self.status = :unauthorized
     self.content_type = 'application/json'
-    self.response_body = { errors: [{ status: '401', message: i18n_message }]}.to_json
+    self.response_body = { errors: [{ status: '401', message: i18n_message }] }.to_json
   end
 end

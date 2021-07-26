@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Auth::SessionsController < Devise::SessionsController
   respond_to :json
 
@@ -22,10 +24,10 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def log_out_success
-    render json: { message: "You are logged out." }, status: :ok
+    render json: { message: 'You are logged out.' }, status: :ok
   end
 
   def log_out_failure
-    render json: { message: "Log out failed."}, status: :unauthorized
+    render json: { message: 'Log out failed.' }, status: :unauthorized
   end
 end

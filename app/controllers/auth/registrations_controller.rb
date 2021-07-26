@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Auth::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
@@ -14,6 +16,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_failed
-    render json: { message: "Sign up failed." }
+    render json: { message: 'Sign up failed.' }
   end
 end

@@ -4,19 +4,19 @@ class V1::CompaniesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @companies = Company.all
+    @companies = policy_scope(Company.all)
 
-    render json: @companies
+    render json: @companies, include: ''
   end
 
   def show
-    @company ||= Company.find(params[:id])
+    @company ||= authorize Company.find(params[:id])
 
     render json: @company
   end
 
   def update
-    @company ||= Company.find(params[:id])
+    @company ||= authorize Company.find(params[:id])
 
     @company.update!(company_params)
     render json: @company

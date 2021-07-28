@@ -4,13 +4,20 @@ class UsersSeeds
   def perform
     20.times do
       user = generate_user
-      user.company = Company.find(rand(1..5))
       logger.error user.errors.full_messages unless user.save
     end
     user = generate_user
-    user.company = Company.find(rand(1..5))
-    user.email = 'test@example.com'
+    user.email = 'user@example.com'
+    user.user!
     logger.error user.errors.full_messages unless user.save
+    admin = generate_user
+    admin.email = 'admin@example.com'
+    admin.admin!
+    logger.error admin.errors.full_messages unless admin.save
+    superadmin = generate_user
+    superadmin.email = 'superadmin@example.com'
+    superadmin.superadmin!
+    logger.error superadmin.errors.full_messages unless superadmin.save
   end
 
   private
@@ -23,7 +30,9 @@ class UsersSeeds
       birth_date: Faker::Date.between(from: 40.years.ago, to: 18.days.ago),
       avatar_url: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
       password: '11111111',
-      password_confirmation: '11111111'
+      password_confirmation: '11111111',
+      company: Company.find(rand(1..5)),
+      role: %w(user admin superadmin).sample
     )
   end
 end

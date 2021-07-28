@@ -2,6 +2,8 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   respond_to :json
+  skip_after_action :verify_policy_scoped, :only => :index
+  skip_after_action :verify_authorized, :except => :index
 
   private
 

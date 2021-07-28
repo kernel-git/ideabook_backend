@@ -2,6 +2,8 @@
 
 class Auth::SessionsController < Devise::SessionsController
   respond_to :json
+  skip_after_action :verify_policy_scoped, :only => :index
+  skip_after_action :verify_authorized, :except => :index
 
   private
 
@@ -16,7 +18,7 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def log_in_success
-    render json: { message: 'You are logged in.', user_id: current_user.id }, status: :ok
+    render json: { message: 'You are logged in.', user_id: current_user.id, user_role: current_user.role }, status: :ok
   end
 
   def log_in_failure
